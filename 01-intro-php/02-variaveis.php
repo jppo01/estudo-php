@@ -7,8 +7,9 @@
     Capítulo de estudo: Cap. 01
 
 */
-  
-// Variable Variables - Usamos quando precisamos ter em nossos códigos nomes de variáveis que mudam de acordo com determinada situação
+// O PHP é case sensentive exceto para para nomes de classes e funções.
+// Variable Variables - Usamos quando precisamos ter em nossos códigos nomes de variáveis 
+// que mudam de acordo com determinada situação
 
 $variavel = 'nome'; // declarando uma varivel com conteúdo nome
 $$variavel = 'maria'; // usando o conceito de variable variables para fazer nome virar variável e receber maria
@@ -36,20 +37,31 @@ $a = 'isso é uma string'; //exemplo
 $a = array('Potência', 'Corrente', 'Tensão'); // exemplo
 
 
-//Objeto: é uma entidade com um determinado comportamento definido por seus métodos (ações) e propriedades (dados)
+//Objeto: é uma entidade com um determinado comportamento definido por seus métodos (ações) e
+// propriedades (dados)
 
 
 // Recurso (resource): é uma variável que mantém uma referência de um recurso externo
+// uma variavel do tipo resource não pode ser serializada
 
 
-// Tipo misto é uma identificação que representa diversos tipos de dados que podem ser usados em um mesmo parâmetro.
+// Tipo misto (mixed) é uma identificação que representa diversos tipos de dados que podem ser usados em um 
+// mesmo parâmetro.
 
 
-// Tipo callback pode ser o nome de uma function representada por uma string ou método de um objeto a ser
+// Tipo callback pode ser o nome de uma function representada por uma string ou método de um objeto 
+// a ser
 // executado por um array.
 
 
 // Tipo NULL: significa q a variável não tem valor.
+
+
+// Constante é um valor que não sofre alteração ao longo da execução do programa. 
+// para definir uma constante não usa-se $ e geralmente seu nome é em maiúsculo
+//   ============== Exemplo =================
+    define ('cor', 'roxo');
+    echo (cor); // output
 
 
 

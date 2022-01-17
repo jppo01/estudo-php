@@ -14,7 +14,7 @@
     // print é um comando que imprime uma string no console
     print 'Imprimindo String'.'<br>';
 
-    // var_dump é uma funçãi que mostra no console ou página o conteúdo de variáveis. 
+    // var_dump é uma função que mostra no console ou página o conteúdo de variáveis. 
     $vetor = array ('Flamengo', 'O mais querido', 'do Brasil!'); // declarando um array de exemplo
     var_dump($vetor); //imprimindo o array com var_dump
     echo '<br>'; //pulando linha para a saída n ficar misturada no próx. exemplo

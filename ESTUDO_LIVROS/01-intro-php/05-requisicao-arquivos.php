@@ -33,7 +33,7 @@
  */
 
 
- //============= require('arquivo.php'); =============
+ //============= require_once('arquivo.php'); =============
  /**
   * similar ao include_once, exceto pelo tipo erro
   * caso o arquivo não seja encontrado o erro é fatal

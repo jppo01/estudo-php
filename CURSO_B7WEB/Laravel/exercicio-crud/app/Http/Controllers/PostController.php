@@ -15,8 +15,7 @@ class PostController extends Controller
         ];
 
         $post = new Post($new_post);
-       // $post->save(); // Se tiro essa função pra não salvar o registo
-
+        $post->save(); // Se tiro essa função pra não salvar o registo não dá erro
         dd($post);
     }
 }

@@ -47,5 +47,6 @@
         @include('Components.peoplelist', $people)
         @endforeach
     </div>
+
 </body>
 </html>

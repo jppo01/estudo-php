@@ -6,7 +6,6 @@ justify-content: center;
 display: flex;
 flex-direction: column;
 box-shadow: -2px 2px 10px 10px gray;
-
 ">
     <img src="{{$img}}" alt="avatar">
 

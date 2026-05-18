@@ -1,7 +1,7 @@
 {
-    "name": "VSJBC — Demandas",
+    "name": "VSJBC — Engenharia Clínica",
     "short_name": "VSJBC",
-    "description": "Sistema de Acompanhamento de Demandas de Trabalho",
+    "description": "Sistema de Acompanhamento de Demandas — Manutenção Assistencial e Engenharia Clínica",
     "start_url": "/vsjbc/dashboard",
     "scope": "/vsjbc/",
     "display": "standalone",

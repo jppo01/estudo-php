@@ -7,7 +7,7 @@
     <div class="oracle-header">
         <i class="bi bi-robot"></i>
         <span>Oráculo IA</span>
-        <span style="margin-left:auto;font-size:.75rem;opacity:.7">Gemini Flash</span>
+        <span style="margin-left:auto;font-size:.75rem;opacity:.7">Eng. Clínica</span>
         <button onclick="document.getElementById('oraclePanel').classList.add('hidden')"
                 style="background:none;border:none;color:#fff;margin-left:.5rem;opacity:.7;cursor:pointer;font-size:1rem">
             <i class="bi bi-x-lg"></i>
@@ -15,7 +15,7 @@
     </div>
     <div class="oracle-messages" id="oracleMessages">
         <div class="msg-bubble msg-oracle">
-            Olá! Sou o Oráculo, seu assistente de TI. Posso responder dúvidas sobre as demandas e chamados GLPI cadastrados. Como posso ajudar?
+            Olá! Sou o Oráculo, assistente da equipe de Manutenção Assistencial e Engenharia Clínica. Posso responder dúvidas sobre as demandas e chamados de manutenção cadastrados. Como posso ajudar?
         </div>
     </div>
     <div class="oracle-input-row">

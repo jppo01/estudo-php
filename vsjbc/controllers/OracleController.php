@@ -158,16 +158,17 @@ class OracleController
     {
         $hasContext = trim($context) !== '';
 
-        $systemPrompt = "Você é o Oráculo, assistente virtual da equipe de TI VSJBC.\n"
-            . "Responda sempre em Português do Brasil. Seja objetivo, claro e profissional.\n";
+        $systemPrompt = "Você é o Oráculo, assistente virtual da equipe de Manutenção Assistencial e Engenharia Clínica (VSJBC).\n"
+            . "Responda sempre em Português do Brasil. Seja objetivo, claro e profissional.\n"
+            . "Seu foco é auxiliar na gestão de demandas de manutenção de equipamentos médicos e assistenciais, chamados corretivos e preventivos, e processos da engenharia clínica.\n";
 
         if ($hasContext) {
             $systemPrompt .= "Use as informações abaixo como base principal para responder. "
-                . "Se a pergunta for sobre algo não listado, use seu conhecimento geral de TI para ajudar.\n\n"
+                . "Se a pergunta for sobre algo não listado, use seu conhecimento geral sobre manutenção hospitalar e engenharia clínica para ajudar.\n\n"
                 . $context;
         } else {
             $systemPrompt .= "Ainda não há demandas ou chamados cadastrados no sistema. "
-                . "Responda com seu conhecimento geral sobre TI e gestão de demandas.";
+                . "Responda com seu conhecimento geral sobre manutenção hospitalar, engenharia clínica e gestão de equipamentos médicos.";
         }
 
         $payload = [

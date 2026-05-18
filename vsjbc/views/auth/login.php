@@ -3,7 +3,7 @@ ob_start();
 ?>
 <div class="brand">
     <h1>VSJ<span>BC</span></h1>
-    <p>Sistema de Acompanhamento de Demandas</p>
+    <p>Manutenção Assistencial &amp; Engenharia Clínica</p>
 </div>
 
 <?php if ($error = flash_get()): ?>

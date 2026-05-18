@@ -5,8 +5,8 @@
         <div class="form-card">
             <h5 class="fw-bold mb-1"><i class="bi bi-upload me-2"></i>Importar Chamados GLPI</h5>
             <p class="text-muted small mb-4">
-                Exporte os chamados do GLPI em formato CSV (separado por ponto e vírgula)
-                e faça o upload aqui. Os dados ficam disponíveis para o Oráculo IA.
+                Exporte os chamados de manutenção do GLPI em formato CSV (separado por ponto e vírgula)
+                e faça o upload aqui. Os dados ficam disponíveis para consulta no Oráculo IA.
             </p>
 
             <?php if (!Auth::isAdmin()): ?>

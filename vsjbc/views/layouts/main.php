@@ -100,7 +100,7 @@
 <!-- Oracle Chat Widget -->
 <?php require __DIR__ . '/../partials/_oracle_chat.php'; ?>
 
-<script>window.APP_URL = '<?= APP_URL ?>';</script>
+<script>window.APP_URL = '<?= APP_URL ?>'; window.CSRF_TOKEN = '<?= CSRF::token() ?>';</script>
 <script>
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/vsjbc/sw.js', { scope: '/vsjbc/' });

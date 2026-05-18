@@ -33,7 +33,7 @@
         const typing = appendMsg('Digitando…', 'oracle msg-typing');
 
         try {
-            const csrf = document.querySelector('input[name="_csrf"]')?.value || '';
+            const csrf = window.CSRF_TOKEN || '';
             const res  = await fetch(window.APP_URL + '/api/oracle-chat', {
                 method: 'POST',
                 headers: {

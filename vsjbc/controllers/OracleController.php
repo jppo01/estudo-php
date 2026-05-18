@@ -112,6 +112,7 @@ class OracleController
     {
         $parts = [];
 
+        // Base de conhecimento — busca por palavras-chave
         $kbResults = $this->kb->searchRelevant($question, 5);
         if ($kbResults) {
             $parts[] = "=== BASE DE CONHECIMENTO ===";
@@ -120,17 +121,22 @@ class OracleController
             }
         }
 
-        $demandResults = $this->demands->searchForContext($question, 5);
+        // Demandas — busca por palavras-chave; se não encontrar, carrega todas as recentes
+        $demandResults = $this->demands->searchForContext($question, 8);
+        if (!$demandResults) {
+            $demandResults = $this->demands->findAll([], 1, 20);
+        }
         if ($demandResults) {
-            $parts[] = "\n=== DEMANDAS RELEVANTES ===";
+            $parts[] = "\n=== DEMANDAS CADASTRADAS ===";
             foreach ($demandResults as $d) {
                 $status   = status_label($d['status']);
                 $priority = priority_label($d['priority']);
-                $deadline = $d['deadline'] ? date_br($d['deadline']) : 'sem prazo';
-                $parts[] = "Demanda #{$d['id']}: {$d['title']} | Status: {$status} | Prioridade: {$priority} | Prazo: {$deadline}\n{$d['description']}";
+                $deadline = !empty($d['deadline']) ? date_br($d['deadline']) : 'sem prazo';
+                $parts[] = "Demanda #{$d['id']}: {$d['title']} | Status: {$status} | Prioridade: {$priority} | Prazo: {$deadline}" . (!empty($d['description']) ? "\n{$d['description']}" : '');
             }
         }
 
+        // Chamados GLPI — busca por palavras-chave
         $glpiResults = $this->glpi->searchForContext($question, 5);
         if ($glpiResults) {
             $parts[] = "\n=== CHAMADOS GLPI RELEVANTES ===";
@@ -141,9 +147,8 @@ class OracleController
 
         $ctx = implode("\n\n", $parts);
 
-        // Limitar contexto a ~3000 chars para não exceder limites de API
-        if (strlen($ctx) > 3000) {
-            $ctx = mb_substr($ctx, 0, 3000) . '...';
+        if (strlen($ctx) > 4000) {
+            $ctx = mb_substr($ctx, 0, 4000) . '...';
         }
 
         return $ctx;
@@ -151,11 +156,19 @@ class OracleController
 
     private function callGemini(string $context, string $question): string
     {
+        $hasContext = trim($context) !== '';
+
         $systemPrompt = "Você é o Oráculo, assistente virtual da equipe de TI VSJBC.\n"
-            . "Responda em Português do Brasil. Seja objetivo e profissional.\n"
-            . "Use APENAS as informações fornecidas abaixo. Se não encontrar a informação, diga:\n"
-            . "'Não encontrei essa informação na minha base de dados.'\n\n"
-            . $context;
+            . "Responda sempre em Português do Brasil. Seja objetivo, claro e profissional.\n";
+
+        if ($hasContext) {
+            $systemPrompt .= "Use as informações abaixo como base principal para responder. "
+                . "Se a pergunta for sobre algo não listado, use seu conhecimento geral de TI para ajudar.\n\n"
+                . $context;
+        } else {
+            $systemPrompt .= "Ainda não há demandas ou chamados cadastrados no sistema. "
+                . "Responda com seu conhecimento geral sobre TI e gestão de demandas.";
+        }
 
         $payload = [
             'contents' => [

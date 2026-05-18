@@ -176,15 +176,22 @@ class OracleController
             CURLOPT_POST           => true,
             CURLOPT_POSTFIELDS     => json_encode($payload),
             CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
-            CURLOPT_TIMEOUT        => 15,
-            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_TIMEOUT        => 30,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
         ]);
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlErr  = curl_error($ch);
         curl_close($ch);
 
         if ($response === false || $httpCode !== 200) {
+            // Em desenvolvimento, mostrar erro detalhado
+            if (APP_ENV === 'development') {
+                return "Erro na API Gemini. HTTP: {$httpCode}. cURL: {$curlErr}. Resposta: " . substr($response ?: '', 0, 200);
+            }
             return 'Desculpe, não consegui conectar ao serviço de IA no momento. Tente novamente.';
         }
 

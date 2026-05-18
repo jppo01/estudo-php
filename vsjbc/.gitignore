@@ -1,9 +1,23 @@
-# Configurações sensíveis
+# Configurações sensíveis — nunca commitar
 config/ai.php
 config/database.php
+
+# Sessões PHP
+sessions/
 
 # Uploads
 uploads/glpi/*.csv
 
+# Arquivos de diagnóstico temporários
+curl_test.php
+list_models.php
+session_test.php
+set_password.php
+install.php
+
 # Logs
 *.log
+
+# OS
+.DS_Store
+Thumbs.db

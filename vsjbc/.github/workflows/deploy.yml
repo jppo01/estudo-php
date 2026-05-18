@@ -1,0 +1,37 @@
+name: Deploy VSJBC → HostGator
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./
+          server-dir: /public_html/vsjbc/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/config/database.php
+            **/config/ai.php
+            **/sessions/**
+            **/uploads/glpi/*.csv
+            **/install.php
+            **/curl_test.php
+            **/list_models.php
+            **/session_test.php
+            **/set_password.php

@@ -1,0 +1,31 @@
+Options -Indexes -MultiViews
+
+RewriteEngine On
+
+# Bloquear acesso direto a arquivos internos
+RewriteRule ^(config|core|models|controllers|views|uploads)(/|$) - [F,L]
+
+# Bloquear arquivos ocultos (.env, .git, etc.)
+RewriteRule (^|/)\. - [F,L]
+
+# Deixar passar arquivos e diretórios reais (assets, api, install.php)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rotear tudo pelo front controller
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Headers de segurança
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# PHP: desativar exibição de erros em produção
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>

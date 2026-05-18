@@ -10,7 +10,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="VSJBC Eng. Clínica">
+    <meta name="apple-mobile-web-app-title" content="VSJBC Man. Assistencial">
     <link rel="apple-touch-icon" href="<?= base_url('assets/img/icon-192.php') ?>">
     <!-- /PWA -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -25,7 +25,7 @@ ob_start();
                 <label class="form-label fw-semibold small">Categoria</label>
                 <input type="text" name="category" class="form-control"
                        value="<?= esc($entry['category'] ?? '') ?>"
-                       placeholder="Ex: Equipamentos, Manutenção Preventiva, GLPI, Normas...">
+                       placeholder="Ex: Manutenção Assistencial, Engenharia Clínica, GLPI, Equipamento Médico, Normas...">
             </div>
             <div class="col-md-6">
                 <label class="form-label fw-semibold small">Tags (separadas por vírgula)</label>

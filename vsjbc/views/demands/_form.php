@@ -47,7 +47,7 @@ $d = $demand ?? [];
         <div class="col-md-6">
             <label class="form-label fw-semibold small">Categoria</label>
             <input type="text" name="category" class="form-control"
-                   value="<?= esc($d['category'] ?? '') ?>" placeholder="Ex: Manutenção Corretiva, Preventiva, Equipamento...">
+                   value="<?= esc($d['category'] ?? '') ?>" placeholder="Ex: Manutenção Corretiva, Preventiva, Engenharia Clínica, Equipamento Médico...">
         </div>
         <div class="col-md-6">
             <label class="form-label fw-semibold small">Responsável</label>

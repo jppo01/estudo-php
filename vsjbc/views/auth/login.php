@@ -4,6 +4,7 @@ ob_start();
 <div class="brand">
     <h1>VSJ<span>BC</span></h1>
     <p>Manutenção Assistencial &amp; Engenharia Clínica</p>
+    <small class="text-muted" style="font-size:.75rem">Acompanhamento de Demandas</small>
 </div>
 
 <?php if ($error = flash_get()): ?>

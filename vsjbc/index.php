@@ -13,7 +13,15 @@ if (APP_ENV === 'development') {
     ini_set('display_errors', '0');
 }
 
-// Sessão segura
+// Forçar pasta de sessão local (resolve problema de sessão em hospedagem compartilhada)
+$sessionPath = __DIR__ . '/sessions';
+if (!is_dir($sessionPath)) {
+    mkdir($sessionPath, 0700, true);
+}
+ini_set('session.save_path', $sessionPath);
+ini_set('session.use_strict_mode', '1');
+ini_set('session.gc_maxlifetime', (string)SESSION_TIMEOUT);
+
 $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || ($_SERVER['SERVER_PORT'] ?? 80) == 443
         || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');

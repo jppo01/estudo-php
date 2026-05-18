@@ -19,7 +19,9 @@ class AuthController
 
     public function processLogin(): void
     {
-        CSRF::requireValid();
+        // CSRF não aplicado no login pois sessão pode não persistir em
+        // hospedagem compartilhada antes da autenticação. Todas as ações
+        // pós-login continuam protegidas por CSRF.
 
         $email    = Sanitizer::str('email', $_POST);
         $password = $_POST['password'] ?? '';

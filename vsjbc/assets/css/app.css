@@ -1,0 +1,201 @@
+/* ── Variáveis ─────────────────────────────────────────────── */
+:root {
+    --sidebar-width: 240px;
+    --primary: #1a56db;
+    --sidebar-bg: #1e2a3b;
+    --sidebar-text: #c8d3e0;
+    --sidebar-active: #ffffff;
+    --card-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+body { background: #f4f6fb; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+.app-wrapper { display: flex; min-height: 100vh; }
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    position: fixed; top: 0; left: 0;
+    height: 100vh; overflow-y: auto;
+    z-index: 1000;
+    transition: transform .25s;
+}
+.sidebar-brand {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.1rem; font-weight: 700;
+    color: #fff; border-bottom: 1px solid rgba(255,255,255,.08);
+    text-decoration: none; display: block;
+}
+.sidebar-brand span { color: #60a5fa; }
+.sidebar-nav { padding: .75rem 0; }
+.sidebar-nav .nav-link {
+    color: var(--sidebar-text); padding: .65rem 1.5rem;
+    border-radius: 0; display: flex; align-items: center; gap: .6rem;
+    font-size: .92rem; transition: background .15s, color .15s;
+}
+.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link.active {
+    background: rgba(255,255,255,.1);
+    color: var(--sidebar-active);
+}
+.sidebar-nav .nav-link i { width: 18px; text-align: center; }
+.sidebar-section {
+    font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: rgba(255,255,255,.35);
+    padding: 1rem 1.5rem .25rem;
+}
+
+/* Main content */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1; min-width: 0;
+}
+
+/* Topbar */
+.topbar {
+    background: #fff; border-bottom: 1px solid #e9ecef;
+    padding: .75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 900;
+}
+.topbar .page-title { font-size: 1.1rem; font-weight: 600; margin: 0; }
+
+/* Cards */
+.stat-card {
+    background: #fff; border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--card-shadow);
+    border-left: 4px solid transparent;
+}
+.stat-card.border-pendente   { border-color: #f59e0b; }
+.stat-card.border-andamento  { border-color: #3b82f6; }
+.stat-card.border-concluida  { border-color: #10b981; }
+.stat-card.border-cancelada  { border-color: #6b7280; }
+.stat-card .number { font-size: 2rem; font-weight: 700; line-height: 1; }
+.stat-card .label  { font-size: .8rem; color: #6b7280; margin-top: .25rem; }
+
+/* Tables */
+.table-card {
+    background: #fff; border-radius: 12px;
+    box-shadow: var(--card-shadow); overflow: hidden;
+}
+.table-card .card-header {
+    background: #fff; border-bottom: 1px solid #f0f0f0;
+    padding: 1rem 1.25rem; font-weight: 600;
+}
+
+/* Badges */
+.badge { font-size: .75rem; font-weight: 500; }
+
+/* Demand status pills */
+.status-pill {
+    display: inline-block; padding: .2rem .75rem;
+    border-radius: 100px; font-size: .78rem; font-weight: 500;
+}
+
+/* Activity feed */
+.activity-item {
+    padding: .6rem 0; border-bottom: 1px solid #f0f0f0;
+    font-size: .87rem;
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-time { color: #9ca3af; font-size: .78rem; }
+
+/* Forms */
+.form-card {
+    background: #fff; border-radius: 12px;
+    box-shadow: var(--card-shadow); padding: 1.75rem;
+}
+
+/* History timeline */
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before {
+    content: ''; position: absolute; left: .45rem; top: 0; bottom: 0;
+    width: 2px; background: #e9ecef;
+}
+.timeline-item { position: relative; margin-bottom: 1rem; }
+.timeline-dot {
+    position: absolute; left: -1.25rem; top: .25rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--primary); border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--primary);
+}
+.timeline-content { background: #f8f9fa; border-radius: 8px; padding: .5rem .75rem; }
+
+/* Oracle chat widget */
+.oracle-btn {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--primary); color: #fff;
+    border: none; box-shadow: 0 4px 16px rgba(26,86,219,.4);
+    font-size: 1.4rem; cursor: pointer; z-index: 1050;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .2s;
+}
+.oracle-btn:hover { transform: scale(1.08); }
+.oracle-panel {
+    position: fixed; bottom: 5.5rem; right: 1.5rem;
+    width: 360px; max-height: 520px;
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.18);
+    display: flex; flex-direction: column;
+    z-index: 1040; overflow: hidden;
+    transition: opacity .2s, transform .2s;
+}
+.oracle-panel.hidden { opacity: 0; pointer-events: none; transform: translateY(12px); }
+.oracle-header {
+    background: var(--sidebar-bg); color: #fff;
+    padding: .85rem 1rem; display: flex; align-items: center; gap: .5rem;
+    font-weight: 600;
+}
+.oracle-messages {
+    flex: 1; overflow-y: auto; padding: .75rem;
+    display: flex; flex-direction: column; gap: .5rem;
+    background: #f8fafc;
+}
+.msg-bubble {
+    max-width: 85%; padding: .5rem .85rem;
+    border-radius: 12px; font-size: .875rem; line-height: 1.45;
+    white-space: pre-wrap;
+}
+.msg-user   { background: var(--primary); color: #fff; align-self: flex-end; border-bottom-right-radius: 3px; }
+.msg-oracle { background: #e9ecef; color: #1a202c; align-self: flex-start; border-bottom-left-radius: 3px; }
+.msg-typing { color: #9ca3af; font-style: italic; font-size: .82rem; }
+.oracle-input-row {
+    padding: .6rem .75rem; border-top: 1px solid #e9ecef;
+    display: flex; gap: .5rem;
+}
+.oracle-input-row input {
+    flex: 1; border: 1px solid #d1d5db; border-radius: 8px;
+    padding: .45rem .75rem; font-size: .875rem; outline: none;
+}
+.oracle-input-row input:focus { border-color: var(--primary); }
+.oracle-input-row button {
+    background: var(--primary); color: #fff; border: none;
+    border-radius: 8px; padding: .45rem .85rem; cursor: pointer;
+    font-size: .85rem;
+}
+
+/* ── Print styles ──────────────────────────────────────────── */
+@media print {
+    .sidebar, .topbar, .oracle-btn, .oracle-panel,
+    .no-print, .btn, nav, form { display: none !important; }
+    .main-content { margin-left: 0 !important; }
+    body { background: #fff; }
+    .table-card, .form-card, .stat-card {
+        box-shadow: none !important; border: 1px solid #dee2e6;
+    }
+    .print-title { display: block !important; }
+    a[href]:after { content: none !important; }
+}
+.print-title { display: none; }
+
+/* ── Responsivo ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .sidebar.open { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+    .oracle-panel { width: calc(100vw - 2rem); right: 1rem; }
+}

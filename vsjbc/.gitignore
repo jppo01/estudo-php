@@ -1,0 +1,9 @@
+# Configurações sensíveis
+config/ai.php
+config/database.php
+
+# Uploads
+uploads/glpi/*.csv
+
+# Logs
+*.log
